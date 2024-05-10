@@ -2,12 +2,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("contactForm");
     const successMessage = document.getElementById("successMessage");
 
+    console.log(form);
     form.addEventListener("submit", function(event) {
         event.preventDefault();
-        const formData = new FormData(form);
-        console.log(formData);
+        //getting form data
+        
+        const formData= new FormData(form);
+        const myData={};
 
-        // Simulate sending data to server (replace this with actual code to send data to your server)
+        for(const[key, value] of formData){
+            myData[key]= value;
+        }
+
+        console.log(myData);
+
         setTimeout(function() {
             successMessage.classList.remove("hidden");
             form.reset();
