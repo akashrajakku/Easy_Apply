@@ -2,19 +2,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("contactForm");
     const successMessage = document.getElementById("successMessage");
 
-    console.log(form);
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         //getting form data
         
+        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+
         const formData= new FormData(form);
-        const myData={};
+        myData={};
 
         for(const[key, value] of formData){
             myData[key]= value;
         }
 
-        console.log(myData);
+        window.localStorage.setItem('myData', JSON.stringify(myData));
+
 
         setTimeout(function() {
             successMessage.classList.remove("hidden");
