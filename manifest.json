@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Easy Apply",
+  "version": "1.0",
+  "description": "Help college students easily apply for multiple jobs without manually filling repeating fields.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/forms/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

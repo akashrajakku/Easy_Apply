@@ -1,29 +1,34 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("contactForm");
-    const successMessage = document.getElementById("successMessage");
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('userDataForm');
+    
+    if (form) {
+        chrome.storage.sync.get(['userData'], function(result) {
+            if (result.userData) {
+                for (const [key, value] of Object.entries(result.userData)) {
+                    const input = document.getElementById(key);
+                    if (input) input.value = value;
+                }
+            }
+        });
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        //getting form data
-        
-        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-
-        const formData= new FormData(form);
-        myData={};
-
-        for(const[key, value] of formData){
-            myData[key]= value;
-        }
-
-        window.localStorage.setItem('myData', JSON.stringify(myData));
-
-
-        setTimeout(function() {
-            successMessage.classList.remove("hidden");
-            form.reset();
-            setTimeout(function() {
-                successMessage.classList.add("hidden");
-            }, 3000); // Hide success message after 3 seconds
-        }, 1000); // Simulate server response delay
-    });
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const userData = Object.fromEntries(formData);
+            
+            chrome.storage.sync.set({userData: userData}, function() {
+                console.log('User data saved');
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'block';
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+    } else {
+        console.error('Form element not found');
+    }
 });
