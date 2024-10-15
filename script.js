@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (form) {
         chrome.storage.sync.get(['userData'], function(result) {
-            if (result.userData) {
+            if (chrome.runtime.lastError) {
+                console.error('Error retrieving user data:', chrome.runtime.lastError);
+            } else if (result.userData) {
                 for (const [key, value] of Object.entries(result.userData)) {
-                    const input = document.getElementById(key);
+                    const input = document.querySelector(`[data-key="${key}"]`); // Use data-key attribute
                     if (input) input.value = value;
                 }
             }
@@ -16,15 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(form);
             const userData = Object.fromEntries(formData);
             
-            chrome.storage.sync.set({userData: userData}, function() {
-                console.log('User data saved');
-                // Show success message
-                const successMessage = document.getElementById('successMessage');
-                if (successMessage) {
-                    successMessage.style.display = 'block';
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 3000);
+            chrome.storage.sync.set({ userData: userData }, function() {
+                if (chrome.runtime.lastError) {
+                    console.error('Error saving user data:', chrome.runtime.lastError);
+                } else {
+                    console.log('User data saved');
+                    const successMessage = document.getElementById('successMessage');
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 3000);
+                    }
                 }
             });
         });
