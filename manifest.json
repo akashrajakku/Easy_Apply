@@ -10,18 +10,9 @@
   "action": {
     "default_popup": "index.html"
   },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
-  "homepage_url": "https://github.com/akashrajakku/Easy_Apply",
   "content_scripts": [
     {
-      "matches": ["https://docs.google.com/forms/*"],
+      "matches": ["*://docs.google.com/forms/*"],
       "js": ["content.js"]
     }
   ]

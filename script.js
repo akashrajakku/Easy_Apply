@@ -2,13 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('userDataForm');
     
     if (form) {
+        // Retrieve user data and fill in the form
         chrome.storage.sync.get(['userData'], function(result) {
             if (chrome.runtime.lastError) {
                 console.error('Error retrieving user data:', chrome.runtime.lastError);
             } else if (result.userData) {
                 for (const [key, value] of Object.entries(result.userData)) {
-                    const input = document.querySelector(`[data-key="${key}"]`); // Use data-key attribute
-                    if (input) input.value = value;
+                    const input = document.querySelector(`[name="${key}"]`);
+                    if (input) {
+                        input.value = value;
+                    }
                 }
             }
         });
@@ -22,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (chrome.runtime.lastError) {
                     console.error('Error saving user data:', chrome.runtime.lastError);
                 } else {
-                    console.log('User data saved');
                     const successMessage = document.getElementById('successMessage');
                     if (successMessage) {
                         successMessage.style.display = 'block';
