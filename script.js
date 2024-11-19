@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('userDataForm');
     
     if (form) {
-        // Retrieve user data and fill in the form
         chrome.storage.sync.get(['userData'], function(result) {
             if (chrome.runtime.lastError) {
                 console.error('Error retrieving user data:', chrome.runtime.lastError);
