@@ -24,13 +24,13 @@ function autofillForm(userData) {
             fieldValue = userData.emailofficial.trim();
         } else if ((labelText.includes('email') || labelText.includes('e-mail')) && !labelText.includes('official') && userData.email) { // 5 personal email
             fieldValue = userData.email.trim();
-        } else if (labelText.includes('rollnumber') || labelText.includes('roll') && userData.universityrollnumber) { // 6 roll number 
+        } else if (labelText.includes('rollnumber') || (labelText.includes('roll') && !labelText.includes('enroll')) && userData.universityrollnumber) { // 6 roll number 
             fieldValue = userData.universityrollnumber.trim();
         } else if (labelText.includes('admissionnumber') || labelText.includes('enrollmentnumber') || labelText.includes('admission') && userData.admissionnumber) { // 7 admission number || enrollment number
             fieldValue = userData.admissionnumber.trim();
         } else if (labelText.includes('10') || labelText.includes('10th') || labelText.includes('10th%') || labelText.includes('xth') || labelText.includes('xth%')&& userData.tenth) { // 8 10th %
             fieldValue = userData.tenth.trim();
-        } else if (labelText.includes('12') || labelText.includes('12th') || labelText.includes('12th%') || labelText.includes('xth') || labelText.includes('xth%') && userData.twelfth) { // 9 12th %
+        } else if (labelText.includes('12') || labelText.includes('12th') || labelText.includes('12th%') || labelText.includes('xiith') || labelText.includes('xiith%') && userData.twelfth) { // 9 12th %
             fieldValue = userData.twelfth.trim();
         } else if (labelText.includes('b.tech') || labelText.includes('b.tech%') || labelText.includes('b.tech.%') || labelText.includes('graduation%') || labelText.includes('graduationmarks') && userData.btech) { // 10 btech %
             fieldValue = userData.btech.trim();
