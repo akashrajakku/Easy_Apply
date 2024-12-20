@@ -44,7 +44,6 @@ function autofillForm(userData) {
             fieldValue = userData.currentcity.trim();
         } else if (labelText.includes('skills') || labelText.includes('technicalskills') && userData.technicalskills) { // 15 technical skills
             fieldValue = userData.technicalskills.trim();
-<<<<<<< HEAD
         } else if (labelText.includes('contact') || labelText.includes('phone') || labelText.includes('mobile') && userData.contact) { // 16 contact skills
             fieldValue = userData.contact.trim();
         } else if (labelText.includes('currentaddress') && userData.currentaddress) { // 15 technical skills
@@ -59,11 +58,6 @@ function autofillForm(userData) {
             fieldValue = userData.dob.trim();
         } 
         
-=======
-        } else if (labelText.includes('contact') || labelText.includes('phone') && userData.contact) { // 16 contact skills
-            fieldValue = userData.contact.trim();
-        }
->>>>>>> ccf08c0f9ec2ae72160eb3fdd78035c1aa4f2247
 
         if (fieldValue) {
             const inputField = parentDiv.childNodes[1].querySelector('input[type="text"], input[type="email"], input[type="date"], input[type="number"]');
