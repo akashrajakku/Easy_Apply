@@ -44,6 +44,8 @@ function autofillForm(userData) {
             fieldValue = userData.currentcity.trim();
         } else if (labelText.includes('skills') || labelText.includes('technicalskills') && userData.technicalskills) { // 15 technical skills
             fieldValue = userData.technicalskills.trim();
+        } else if (labelText.includes('contact') || labelText.includes('phone') && userData.contact) { // 16 contact skills
+            fieldValue = userData.contact.trim();
         }
 
         if (fieldValue) {
