@@ -20,19 +20,19 @@ function autofillForm(userData) {
             fieldValue = lastName;
         } else if (labelText.includes('name') && !labelText.includes('first') && !labelText.includes('last') && userData.name) { // 3 name
             fieldValue = trimmedName;
-        } else if (labelText.includes('email') && labelText.includes('official') && userData.emailofficial) { // 4 official email
+        } else if ((labelText.includes('email')||labelText.includes('e-mail')) && labelText.includes('official') && userData.emailofficial) { // 4 official email
             fieldValue = userData.emailofficial.trim();
-        } else if (labelText.includes('email') && !labelText.includes('official') && userData.email) { // 5 personal email
+        } else if ((labelText.includes('email') || labelText.includes('e-mail')) && !labelText.includes('official') && userData.email) { // 5 personal email
             fieldValue = userData.email.trim();
-        } else if (labelText.includes('rollnumber') && userData.universityrollnumber) { // 6 roll number 
+        } else if (labelText.includes('rollnumber') || labelText.includes('roll') && userData.universityrollnumber) { // 6 roll number 
             fieldValue = userData.universityrollnumber.trim();
-        } else if (labelText.includes('admissionnumber') || labelText.includes('enrollmentnumber') && userData.admissionnumber) { // 7 admission number || enrollment number
+        } else if (labelText.includes('admissionnumber') || labelText.includes('enrollmentnumber') || labelText.includes('admission') && userData.admissionnumber) { // 7 admission number || enrollment number
             fieldValue = userData.admissionnumber.trim();
-        } else if (labelText.includes('10') || labelText.includes('10th') || labelText.includes('10th%') && userData.tenth) { // 8 10th %
+        } else if (labelText.includes('10') || labelText.includes('10th') || labelText.includes('10th%') || labelText.includes('xth') || labelText.includes('xth%')&& userData.tenth) { // 8 10th %
             fieldValue = userData.tenth.trim();
-        } else if (labelText.includes('12') || labelText.includes('12th') || labelText.includes('12th%') && userData.twelfth) { // 9 12th %
+        } else if (labelText.includes('12') || labelText.includes('12th') || labelText.includes('12th%') || labelText.includes('xth') || labelText.includes('xth%') && userData.twelfth) { // 9 12th %
             fieldValue = userData.twelfth.trim();
-        } else if (labelText.includes('btech%') || labelText.includes('b.tech%') || labelText.includes('b.tech.%') || labelText.includes('graduation%') || labelText.includes('graduationmarks') && userData.btech) { // 10 btech %
+        } else if (labelText.includes('b.tech') || labelText.includes('b.tech%') || labelText.includes('b.tech.%') || labelText.includes('graduation%') || labelText.includes('graduationmarks') && userData.btech) { // 10 btech %
             fieldValue = userData.btech.trim();
         } else if (labelText.includes('hometowncity')&& userData.hometowncity) { // 11 hometown city
             fieldValue = userData.hometowncity.trim();
@@ -44,7 +44,20 @@ function autofillForm(userData) {
             fieldValue = userData.currentcity.trim();
         } else if (labelText.includes('skills') || labelText.includes('technicalskills') && userData.technicalskills) { // 15 technical skills
             fieldValue = userData.technicalskills.trim();
-        }
+        } else if (labelText.includes('contact') || labelText.includes('phone') || labelText.includes('mobile') && userData.contact) { // 16 contact skills
+            fieldValue = userData.contact.trim();
+        } else if (labelText.includes('currentaddress') && userData.currentaddress) { // 15 technical skills
+            fieldValue = userData.currentaddress.trim();
+        } else if (labelText.includes('permanentaddress') && userData.permanentaddress) { // 15 technical skills
+            fieldValue = userData.permanentaddress.trim();
+        } else if (labelText.includes('programminglanguage') && userData.programminglanguage) { // 15 technical skills
+            fieldValue = userData.programminglanguage.trim();
+        } else if (labelText.includes('backlog') && userData.backlog) { // 15 technical skills
+            fieldValue = userData.backlog.trim();
+        } else if (labelText.includes('dob') || labelText.includes('birth') && userData.dob) { // 15 technical skills
+            fieldValue = userData.dob.trim();
+        } 
+        
 
         if (fieldValue) {
             const inputField = parentDiv.childNodes[1].querySelector('input[type="text"], input[type="email"], input[type="date"], input[type="number"]');
